@@ -1,0 +1,52 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+--This the global component "adder". It will use 3 full adder in order to sum 2 3bit numbers--
+
+--Global Input/Output correspoonding to the outer box on the scheme
+entity adder is
+	Port ( Cin,X0,Y0,X1,Y1,X2,Y2: in  STD_LOGIC;
+           Cout, S0,S1,S2 : out  STD_LOGIC);
+
+end adder;
+
+architecture Behavioral of adder is
+	--Internal signal (signals linking iner boxes)--
+	signal C0 :	STD_LOGIC;
+	signal C1 :	STD_LOGIC;
+	signal C2 :	STD_LOGIC;
+		
+begin
+
+-- Instanciation of 3 full adder component --
+
+	FA0 : entity work.FA --import a component from another file
+	PORT MAP(
+    Cin  => Cin, 
+    X    => X0, 
+    Y    => Y0, 
+    Cout => C0, 
+    Sum  => S0
+    );
+	 
+	FA1 : entity work.FA 
+	PORT MAP(
+    Cin  => C0, 
+    X    => X1, 
+    Y    => Y1, 
+    Cout => C1, 
+    Sum  => S1
+    );
+	 
+	FA2 : entity work.FA 
+	PORT MAP(
+    Cin  => C1, 
+    X    => X2, 
+    Y    => Y2, 
+    Cout => C2, 
+    Sum  => S2
+    );
+
+Cout <= c2;  --final carry--
+
+end Behavioral;
+
