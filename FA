@@ -1,0 +1,21 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+--creation of a Fulll Adder component--
+
+--Subcomponent Input/ouput (in the 3 boxes on the scheme)--
+entity FA is
+    Port ( Cin,X,Y : in  STD_LOGIC;
+           Cout, Sum : out  STD_LOGIC); 
+end FA;
+
+architecture Behavioral of FA is
+
+
+begin
+	--equation to do the computation--
+	Sum <= (Cin)or(Y)or(Y and Cin)or(X)or(X and Y and Cin);
+	Cout <= (Y and Cin) or(X and Cin) or (X and Y)or(X and Y and Cin);
+
+end Behavioral;
+
